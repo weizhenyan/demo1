@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.blog.dao.SystemUserMapper">
+    <resultMap id="systemUserMap" type="com.zy.blog.model.SystemUser" >
+        <id column="user_id" property="userId" />
+        <result column="user_account" property="userAccount" />
+        <result column="user_password" property="userPassword" />
+        <result column="user_phone" property="userPhone" />
+    </resultMap>
+    <select id="findUserByName" resultMap="systemUserMap">
+     SELECT
+      user_id,
+      user_account,
+      user_password,
+      user_phone
+     FROM t_sys_user
+     where user_account = #{userAccount}
+  </select>
+</mapper>

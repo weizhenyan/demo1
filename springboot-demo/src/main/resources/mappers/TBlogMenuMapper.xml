@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.blog.dao.TBlogMenuMapper">
+  <resultMap id="BaseResultMap" type="com.zy.blog.model.TBlogMenu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent" jdbcType="BIGINT" property="parent" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="update" jdbcType="BIGINT" property="update" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parent, `name`, creator, createTime, `update`, updateTime, `status`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_blog_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zy.blog.model.TBlogMenu" useGeneratedKeys="true">
+    insert into t_blog_menu (parent, `name`, creator, 
+      createTime, `update`, updateTime, 
+      `status`)
+    values (#{parent,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{creator,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{update,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zy.blog.model.TBlogMenu" useGeneratedKeys="true">
+    insert into t_blog_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parent != null">
+        parent,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="update != null">
+        `update`,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parent != null">
+        #{parent,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update != null">
+        #{update,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.blog.model.TBlogMenu">
+    update t_blog_menu
+    <set>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update != null">
+        `update` = #{update,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.blog.model.TBlogMenu">
+    update t_blog_menu
+    set parent = #{parent,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      `update` = #{update,jdbcType=BIGINT},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

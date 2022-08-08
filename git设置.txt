@@ -1,0 +1,6 @@
+查看使用的用户名
+git config user.name
+设置全局信息
+git config --global user.name "weizhenyan"
+git config --global user.email "2550360829@qq.com"
+git config --global user.password "2022wei.."
