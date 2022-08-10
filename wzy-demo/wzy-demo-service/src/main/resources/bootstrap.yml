@@ -1,0 +1,46 @@
+server:
+  port: 12002
+elasticsearch:
+  host: 127.0.0.1:9200
+  username:
+  password:
+knife4j:
+  #启用
+  enable: true
+  setting:
+    enableDebug: false
+spring:
+  profiles:
+    active: ae045f98-bec9-45dd-8247-5e384b7ba4fd
+  application:
+    name: wzy-demo-service
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 127.0.0.1:8848
+      config:
+        file-extension: yaml
+        enabled: true
+        namespace: ${spring.profiles.active}
+        # data-id: 默认配置为 ${prefix}.${file-extension} ， 如果定义了spring.profiles.active ，默认配置为：${prefix}-${spring.profiles.active}.${file-extension}
+        enable-remote-sync-config: true
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: ${spring.profiles.active}
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password: root
+#    database: 0
+#    jedis:
+#      pool:
+#        maxActive: 1000
+#        maxWait: 5000
+#        maxIdle: 10
+#        minIdle: 0
